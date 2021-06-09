@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-   // AddressBook book("Uzytkownicy.txt", "Adresaci.txt");
+    PersonalBudget budget("users.xml");
     char znak;
 
     cout << "Witaj w aplikacji do obslugi budzetu osobistego" << endl;
@@ -13,7 +13,7 @@ int main() {
         cout<< endl;
         cout << "Co chcesz zrobic:" << endl;
         cout << "1. Rejestracja nowego uzytkownika" << endl;
-        cout << "2. Logowanie uzytkownika" << endl;
+       // cout << "2. Logowanie uzytkownika" << endl;
         cout << "9. Koniec pracy" << endl;
         cin >> znak;
 
@@ -21,7 +21,7 @@ int main() {
 
         switch (znak) {
         case '1':
-           // book.UserRegister();
+            budget.RegisterUser();
             break;
         case '2': {
          //   book.LoginUser();
@@ -75,6 +75,7 @@ int main() {
         break;
         }
     }
+}
     return 0;
 }
 
