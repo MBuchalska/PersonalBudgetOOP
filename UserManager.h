@@ -12,6 +12,7 @@ class UserManager{
     vector <UserData> users;
     int NumberOfUsers;
     FileManager file;
+    int LoggedUserID;
 
     void PrintAllUsers(vector <UserData> users);  // prints all users on the screen with all data
 
@@ -20,7 +21,11 @@ public:
     users=file.DownloadUsersFromFile();
     PrintAllUsers(users);           //temporary
     };
+
     void RegisterUser();            // registers new user and adds to the file
+    int LoginUser();               // logging the user in
+    int getLoggedUserID();          // getter for the user id
+    void setLoggedUserID(int ID);   // setter for the user id
 
 };
 
