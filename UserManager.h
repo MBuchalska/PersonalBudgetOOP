@@ -26,6 +26,7 @@ public:
     int LoginUser();               // logging the user in
     int getLoggedUserID();          // getter for the user id
     void setLoggedUserID(int ID);   // setter for the user id
+    void ChangeUserPassword(int LoggedUserID);       //changes the value of an attribute of your choice
 
 };
 

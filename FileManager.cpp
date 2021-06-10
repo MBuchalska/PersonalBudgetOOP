@@ -1,13 +1,10 @@
 #include <iostream>
 #include "FileManager.h"
-#include "Markup.h"
 #include <windows.h>
 
 using namespace std;
 
 void FileManager::AddUserToFile(UserData user) {
-    CMarkup xml;
-
     bool fileExists = xml.Load(USER_FILE_NAME);
 
     if (!fileExists) {
@@ -35,7 +32,6 @@ void FileManager::AddUserToFile(UserData user) {
 vector <UserData> FileManager::DownloadUsersFromFile() {
     vector <UserData> users;
     UserData USER;
-    CMarkup xml;
     string TempString;
 
     xml.Load(USER_FILE_NAME);
@@ -71,4 +67,23 @@ vector <UserData> FileManager::DownloadUsersFromFile() {
     }
 
     return users;
+}
+
+void FileManager::ChangeUserPasswordInTheFile(int LoggedUserID, string NewPassword) {
+    string TempString;
+    xml.Load(USER_FILE_NAME);
+    xml.FindElem();
+    xml.IntoElem();
+    while (xml.FindElem("User")) {
+        xml.IntoElem();
+        xml.FindElem("UserId");
+        TempString=xml.GetData();
+        int x=atoi(TempString.c_str());
+        if (x==LoggedUserID) {
+            xml.FindElem("Password");
+            xml.SetElemContent(NewPassword);
+        }
+        xml.OutOfElem();
+        xml.Save(USER_FILE_NAME);
+    }
 }

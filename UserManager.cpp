@@ -104,3 +104,35 @@ int UserManager::getLoggedUserID() {
 void UserManager::setLoggedUserID(int ID){
 LoggedUserID=ID;
 }
+
+void UserManager::ChangeUserPassword(int LoggedUserID){
+if (LoggedUserID==0) {
+        cout << "Uzytkownik nie jest zalogowany. Zaloguj sie zeby zmienic haslo" << endl;
+        system("pause");
+    }
+
+    else {
+        string TempPass="";
+        int TempUserID;
+        NumberOfUsers=users.size();
+
+        system("cls");
+
+        cout<< "Zmiana hasla" << endl;
+
+        for (int i=0; i<NumberOfUsers; i++) {
+            user=users[i];
+            TempUserID=user.getUserID();
+            if (TempUserID==LoggedUserID) {
+                cout<< "Podaj swoje nowe haslo:";
+                cin >> TempPass;
+                user.setUserPassword(TempPass);
+                users[i]=user;
+                cout <<endl;
+                cout <<"Haslo zostalo zmienione" << endl;
+            }
+            file.ChangeUserPasswordInTheFile(LoggedUserID, TempPass);
+        }
+        system("pause");
+    }
+}

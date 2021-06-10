@@ -22,3 +22,8 @@ void PersonalBudget::LogoutUser() {
     user.setLoggedUserID(0);
     cout << "Uzytkownik zostal wylogowany. Dziekujemy za skorzystanie z programu" << endl;
 }
+
+void PersonalBudget::ChangeUserPassword(){
+    int ID=user.getLoggedUserID();
+    user.ChangeUserPassword(ID);
+}
