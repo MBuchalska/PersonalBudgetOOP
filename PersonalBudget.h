@@ -1,5 +1,6 @@
 #include <iostream>
 #include "UserManager.h"
+#include "TimeManager.h"
 #ifndef PERSONALBUDGET_h
 #define PERSONALBUDGET_h
 
@@ -10,7 +11,8 @@ class PersonalBudget{
     UserManager user;
 
 public:
-   PersonalBudget(string UserFileName):user(UserFileName){};     //constructor
+   PersonalBudget(string UserFileName):user(UserFileName){ //constructor
+   };
    void RegisterUser();            // registers new user
    void LoginUser();                // logins the user
    bool IsUserLogedIn();            // checks if the user is logged in
