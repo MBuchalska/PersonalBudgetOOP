@@ -12,7 +12,8 @@ class PersonalBudget{
 
 public:
    PersonalBudget(string UserFileName):user(UserFileName){ //constructor
-   };
+   }
+
    void RegisterUser();            // registers new user
    void LoginUser();                // logins the user
    bool IsUserLogedIn();            // checks if the user is logged in
