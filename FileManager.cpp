@@ -4,6 +4,8 @@
 
 using namespace std;
 
+FileManager::FileManager(){};
+
 void FileManager::AddUserToFile(UserData user) {
     bool fileExists = xml.Load(USER_FILE_NAME);
 
@@ -86,4 +88,21 @@ void FileManager::ChangeUserPasswordInTheFile(int LoggedUserID, string NewPasswo
         xml.OutOfElem();
         xml.Save(USER_FILE_NAME);
     }
+}
+
+int FileManager::HowManyBudgetData(string BudgetFileName, string BudgetTag){
+int counter=0;
+
+bool fileExists = xml.Load(BudgetFileName);
+
+if(!fileExists) return 0;
+else{
+    xml.Load(BudgetFileName);
+    xml.FindElem();
+    xml.IntoElem();
+    while (xml.FindElem(BudgetTag)) {
+        counter++;
+    }
+    return counter;
+}
 }

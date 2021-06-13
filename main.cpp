@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    PersonalBudget budget("users.xml");
+    PersonalBudget budget("users.xml", "incomes.xml", "expenses.xml");
     char znak;
 
     cout << "Witaj w aplikacji do obslugi budzetu osobistego" << endl;
