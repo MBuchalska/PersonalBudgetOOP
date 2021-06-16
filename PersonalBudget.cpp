@@ -12,7 +12,7 @@ void PersonalBudget::LoginUser() {
     system ("pause");
     if(ID>0) {
         income = new BudgetManager(INCOME_FILE_NAME, ID);
-        expence = new BudgetManager(ID, EXPENCE_FILE_NAME);
+        expense = new BudgetManager(ID, EXPENCE_FILE_NAME);
     }
 }
 
@@ -24,9 +24,9 @@ bool PersonalBudget::IsUserLogedIn() {
 void PersonalBudget::LogoutUser() {
     user.setLoggedUserID(0);
     delete income;
-    delete expence;
+    delete expense;
     income=NULL;
-    expence=NULL;
+    expense=NULL;
     cout << "Uzytkownik zostal wylogowany. Dziekujemy za skorzystanie z programu" << endl;
 }
 
@@ -42,5 +42,15 @@ void PersonalBudget::AddIncome() {
     vector <BudgetData> budget=income->getIncomesVector();
     income->AddNewBudgetData(ID, INCOME_FILE_NAME, NumberOfIncomes, BudgetTags, budget);
     NumberOfIncomes++;
+    budget.clear();
+}
+
+void PersonalBudget::AddExpense(){
+    system ("cls");
+    int ID=user.getLoggedUserID();
+    string BudgetTags[4]= {"Expenses", "Expense", "ExpenseID", "wydatek"};
+    vector <BudgetData> budget=expense->getExpencesVector();
+    expense->AddNewBudgetData(ID, EXPENCE_FILE_NAME, NumberOfExpenses, BudgetTags, budget);
+    NumberOfExpenses++;
     budget.clear();
 }

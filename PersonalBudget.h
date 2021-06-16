@@ -13,9 +13,9 @@ class PersonalBudget {
     const string INCOME_FILE_NAME;
     const string EXPENCE_FILE_NAME;
     BudgetManager *income;
-    BudgetManager *expence;
+    BudgetManager *expense;
     int NumberOfIncomes;
-    int NumberOfExpences;
+    int NumberOfExpenses;
     FileManager file;
 
 public:
@@ -23,10 +23,10 @@ public:
         :user(UserFileName), INCOME_FILE_NAME(IncomeFileName),EXPENCE_FILE_NAME(ExpenceFileName) {
         user.setLoggedUserID(0);
         income=NULL;
-        expence=NULL;
+        expense=NULL;
         NumberOfIncomes=file.HowManyBudgetData(INCOME_FILE_NAME);
        // cout << NumberOfIncomes << endl;
-        NumberOfExpences=file.HowManyBudgetData(EXPENCE_FILE_NAME);
+        NumberOfExpenses=file.HowManyBudgetData(EXPENCE_FILE_NAME);
        // cout << NumberOfExpences << endl;
     }
 
@@ -36,6 +36,7 @@ public:
     void LogoutUser();               // loggs the user out
     void ChangeUserPassword();       // changes a password of logged user
     void AddIncome();               //adds income to the file and vector
+    void AddExpense();               //adds expense to the file and vector
 };
 
 #endif // PERSONALBUDGET_h
