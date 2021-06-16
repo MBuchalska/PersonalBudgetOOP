@@ -16,7 +16,6 @@ class PersonalBudget {
     BudgetManager *expence;
     int NumberOfIncomes;
     int NumberOfExpences;
-    string IncomeTag, ExpenceTag;
     FileManager file;
 
 public:
@@ -25,11 +24,9 @@ public:
         user.setLoggedUserID(0);
         income=NULL;
         expence=NULL;
-        IncomeTag="Income";
-        NumberOfIncomes=file.HowManyBudgetData(INCOME_FILE_NAME,IncomeTag);
+        NumberOfIncomes=file.HowManyBudgetData(INCOME_FILE_NAME);
        // cout << NumberOfIncomes << endl;
-        ExpenceTag="Expence";
-        NumberOfExpences=file.HowManyBudgetData(EXPENCE_FILE_NAME, ExpenceTag);
+        NumberOfExpences=file.HowManyBudgetData(EXPENCE_FILE_NAME);
        // cout << NumberOfExpences << endl;
     }
 
@@ -38,6 +35,7 @@ public:
     bool IsUserLogedIn();            // checks if the user is logged in
     void LogoutUser();               // loggs the user out
     void ChangeUserPassword();       // changes a password of logged user
+    void AddIncome();               //adds income to the file and vector
 };
 
 #endif // PERSONALBUDGET_h

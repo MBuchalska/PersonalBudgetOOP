@@ -9,9 +9,8 @@ void PersonalBudget::RegisterUser() {
 
 void PersonalBudget::LoginUser() {
     int ID=user.LoginUser();
-//cout<<ID<< endl;
     system ("pause");
-    if(ID>0){
+    if(ID>0) {
         income = new BudgetManager(INCOME_FILE_NAME, ID);
         expence = new BudgetManager(ID, EXPENCE_FILE_NAME);
     }
@@ -34,4 +33,14 @@ void PersonalBudget::LogoutUser() {
 void PersonalBudget::ChangeUserPassword() {
     int ID=user.getLoggedUserID();
     user.ChangeUserPassword(ID);
+}
+
+void PersonalBudget::AddIncome() {
+    system ("cls");
+    int ID=user.getLoggedUserID();
+    string BudgetTags[4]= {"Incomes", "Income", "IncomeID", "przychod"};
+    vector <BudgetData> budget=income->getIncomesVector();
+    income->AddNewBudgetData(ID, INCOME_FILE_NAME, NumberOfIncomes, BudgetTags, budget);
+    NumberOfIncomes++;
+    budget.clear();
 }

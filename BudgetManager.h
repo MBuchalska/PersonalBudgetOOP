@@ -1,8 +1,6 @@
 #include <iostream>
-//#include "BudgetData.h"
+#include "BudgetData.h"
 #include "FileManager.h"
-#include "IncomeData.h"
-#include "ExpenceData.h"
 #ifndef BUDGETMANAGER_h
 #define BUDGETMANAGER_h
 
@@ -12,8 +10,8 @@ class BudgetManager {
     const int LOGGED_USER_ID;
     FileManager file;
     string IncomeIDTag, ExpenceIDTag;
-    vector <IncomeData> incomes;
-    vector <ExpenceData> expences;
+    vector <BudgetData> incomes;
+    vector <BudgetData> expences;
 
 public:
     BudgetManager(string IncomeFileName, int LoggedUserID)
@@ -27,6 +25,10 @@ public:
         ExpenceIDTag="ExpenceID";
         //wci¹gnij z pliku expences do wektora expences=
     };
+
+    vector <BudgetData> getIncomesVector();
+    vector <BudgetData> getExpencesVector();
+    void AddNewBudgetData(int LOGGED_USER_ID, string BudgetFileName, int NumberOfBudgetData, string BudgetTags[], vector <BudgetData>& budget);
 };
 
 #endif // BUDGETMANAGER_h

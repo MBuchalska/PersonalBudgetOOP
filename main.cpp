@@ -40,7 +40,7 @@ int main() {
 
                 system("cls");
                 switch (znak) {
-              //  case '1': break;
+                case '1': budget.AddIncome(); break;
                 //case '2': break;
                 // case '3':                    break;
             //    case '4': break;

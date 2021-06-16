@@ -1,6 +1,8 @@
 #include <iostream>
 #include "FileManager.h"
 #include <windows.h>
+#include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -90,7 +92,7 @@ void FileManager::ChangeUserPasswordInTheFile(int LoggedUserID, string NewPasswo
     }
 }
 
-int FileManager::HowManyBudgetData(string BudgetFileName, string BudgetTag){
+int FileManager::HowManyBudgetData(string BudgetFileName){
 int counter=0;
 
 bool fileExists = xml.Load(BudgetFileName);
@@ -100,9 +102,45 @@ else{
     xml.Load(BudgetFileName);
     xml.FindElem();
     xml.IntoElem();
-    while (xml.FindElem(BudgetTag)) {
+    while (xml.FindElem()==true) {
         counter++;
     }
     return counter;
 }
+}
+
+void FileManager::AddBudgetDataToFile(BudgetData budget, string BudgetFileName, string BudgetTags[]){
+ string TempString;
+ int ID;
+
+ bool fileExists = xml.Load(BudgetFileName);
+
+    if (!fileExists) {
+        xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+        xml.AddElem(BudgetTags[0]);
+    }
+    xml.FindElem();
+    xml.IntoElem();
+
+    xml.AddElem(BudgetTags[1]);
+    xml.IntoElem();
+    ID=budget.getBudgetID();
+    TempString=to_string(ID);
+    xml.AddElem(BudgetTags[2],TempString);
+
+    ID=budget.getUserID();
+    TempString=to_string(ID);
+    xml.AddElem("UserID",TempString);
+
+    xml.AddElem("date",budget.getDate());
+    xml.AddElem("item",budget.getItem());
+
+    float x=budget.getAmount();
+    stringstream sstream;
+    sstream<<x;
+    TempString=sstream.str();
+    xml.AddElem("amount",TempString);
+
+    xml.OutOfElem();
+    xml.Save(BudgetFileName);
 }
