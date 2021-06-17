@@ -22,5 +22,6 @@ public:
     void ChangeUserPasswordInTheFile(int LoggedUserID, string NewPassword);  // changes user password in the file
     int HowManyBudgetData(string BudgetFileName);         //checks number of incomes and expences
     void AddBudgetDataToFile(BudgetData budget, string BudgetFileName, string BudgetTags[]); //adds income or expence to file
+    vector <BudgetData> DownloadBudgetDataFromFile(int UserID, string BudgetFileName, string BudgetTag); // downloads budget data from file
 };
 #endif // FILEMANAGER_h

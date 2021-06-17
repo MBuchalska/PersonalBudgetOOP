@@ -70,3 +70,19 @@ void BudgetManager::AddNewBudgetData(int LOGGED_USER_ID, string BudgetFileName, 
     cout << BudgetTags[3] << " dodany" << endl;
     system("pause");
 }
+
+void BudgetManager::PrintBudgetData(vector <BudgetData> budgets, string BudgetTag){
+BudgetData budget;
+int sizeOfBudgets = budgets.size();
+
+for (int i=0; i<sizeOfBudgets; i++){
+    budget=budgets[i];
+        cout << BudgetTag << ": " << budget.getBudgetID() << endl;
+        cout << "UserID: " << budget.getUserID() << endl;              //temporary
+        cout << "data: " << budget.getDate() << endl;
+        cout << "Data int: " << budget.getDateAsNumber() << endl;       //temporary
+        cout << "Item: " << budget.getItem() << endl;
+        cout << "Amount: " << budget.getAmount() << endl;
+        cout << endl;
+}
+}

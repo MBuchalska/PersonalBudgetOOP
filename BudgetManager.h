@@ -13,17 +13,21 @@ class BudgetManager {
     vector <BudgetData> incomes;
     vector <BudgetData> expences;
 
+    void PrintBudgetData(vector <BudgetData> budgets, string BudgetTag); // Prints budget data on screen
+
 public:
     BudgetManager(string IncomeFileName, int LoggedUserID)
         :file(IncomeFileName), LOGGED_USER_ID(LoggedUserID) {
         IncomeIDTag="IncomeID";
-        //wci¹gnij z pliku incomes do wektora incomes=
+        incomes=file.DownloadBudgetDataFromFile(LOGGED_USER_ID, IncomeFileName, IncomeIDTag); // downloads income data from the file
+       // PrintBudgetData(incomes, IncomeIDTag);
     };
 
     BudgetManager(int LoggedUserID, string ExpenceFileName)
         :LOGGED_USER_ID(LoggedUserID), file(ExpenceFileName)  {
-        ExpenceIDTag="ExpenceID";
-        //wci¹gnij z pliku expences do wektora expences=
+        ExpenceIDTag="ExpenseID";
+        expences=file.DownloadBudgetDataFromFile(LOGGED_USER_ID, ExpenceFileName, ExpenceIDTag); // downloads expense data from the file
+       // PrintBudgetData(expences, ExpenceIDTag);
     };
 
     vector <BudgetData> getIncomesVector();
