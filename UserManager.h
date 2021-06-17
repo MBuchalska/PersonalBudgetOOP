@@ -19,7 +19,7 @@ class UserManager{
 public:
     UserManager(string UserFileName):file(UserFileName){        //constructor downloads all users to vector and declares file name
     users=file.DownloadUsersFromFile();
-    PrintAllUsers(users);           //temporary
+   // PrintAllUsers(users);           //temporary
     };
 
     void RegisterUser();            // registers new user and adds to the file

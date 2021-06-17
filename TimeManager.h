@@ -19,6 +19,7 @@ public:
     string getToday();                          // getter for Today date
     string getPreviousMonth();                  // getter for PreviousMonth date
     bool IsTheDateCorrect(string Date);         // checks if the date is correct at many levels
+    int ConvertDateToInt(string Date);          // converts date to number
 };
 
 

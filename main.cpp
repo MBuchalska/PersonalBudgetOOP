@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    PersonalBudget budget("users.xml");
+    PersonalBudget budget("users.xml", "incomes.xml", "expenses.xml");
     char znak;
 
     cout << "Witaj w aplikacji do obslugi budzetu osobistego" << endl;
@@ -40,8 +40,8 @@ int main() {
 
                 system("cls");
                 switch (znak) {
-              //  case '1': break;
-                //case '2': break;
+                case '1': budget.AddIncome(); break;
+                case '2': budget.AddExpense(); break;
                 // case '3':                    break;
             //    case '4': break;
               //  case '5': break;
