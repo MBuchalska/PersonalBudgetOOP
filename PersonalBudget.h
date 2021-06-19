@@ -37,6 +37,7 @@ public:
     void ChangeUserPassword();       // changes a password of logged user
     void AddIncome();               //adds income to the file and vector
     void AddExpense();               //adds expense to the file and vector
+    void AnyPeriodBudgetBalance();      // prints out budget balance from chosen period
 };
 
 #endif // PERSONALBUDGET_h

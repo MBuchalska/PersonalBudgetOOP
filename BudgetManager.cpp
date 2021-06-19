@@ -8,6 +8,7 @@
 
 using namespace std;
 
+
 vector <BudgetData> BudgetManager::getIncomesVector() {
     return incomes;
 }
@@ -71,12 +72,12 @@ void BudgetManager::AddNewBudgetData(int LOGGED_USER_ID, string BudgetFileName, 
     system("pause");
 }
 
-void BudgetManager::PrintBudgetData(vector <BudgetData> budgets, string BudgetTag){
-BudgetData budget;
-int sizeOfBudgets = budgets.size();
+void BudgetManager::PrintBudgetData(vector <BudgetData>& budgets, string BudgetTag) {
+    BudgetData budget;
+    int sizeOfBudgets = budgets.size();
 
-for (int i=0; i<sizeOfBudgets; i++){
-    budget=budgets[i];
+    for (int i=0; i<sizeOfBudgets; i++) {
+        budget=budgets[i];
         cout << BudgetTag << ": " << budget.getBudgetID() << endl;
         cout << "UserID: " << budget.getUserID() << endl;              //temporary
         cout << "data: " << budget.getDate() << endl;
@@ -84,5 +85,48 @@ for (int i=0; i<sizeOfBudgets; i++){
         cout << "Item: " << budget.getItem() << endl;
         cout << "Amount: " << budget.getAmount() << endl;
         cout << endl;
+    }
 }
+
+void BudgetManager::BudgetBalance(int Time1, int Time2, vector <BudgetData>& incomes, vector <BudgetData>& expences) {
+    if (Time1>Time2) {          //changes the order of dates in case of user error
+        int x=Time2;
+        Time2=Time1;
+        Time1=x;
+    }
+
+    float IncomesSum, ExpensesSum, Balance;
+
+    IncomesSum=BudgetSum(incomes, "Przychody", Time1, Time2);
+    ExpensesSum=BudgetSum(expences, "Wydatki", Time1, Time2);
+
+    if (IncomesSum==0) cout<< "Brak przychodow w podanym okresie" << endl;
+    else cout<<"Przychody: " << fixed<< setprecision(2)<<IncomesSum << endl;
+
+    if (ExpensesSum==0) cout<< "Brak wydatkow w podanym okresie" << endl;
+    else cout<<"Wydatki : " << fixed<< setprecision(2)<<ExpensesSum << endl;
+
+    Balance=IncomesSum-ExpensesSum;
+    cout<<"Bilans: " << fixed<< setprecision(2)<<Balance<< endl;
 }
+
+float BudgetManager::BudgetSum(vector <BudgetData>& budgets, string BudgetTag, int Time1, int Time2) {
+    BudgetData budget;
+    int BudgetDataSize=budgets.size();
+    float sum=0, singleData=0;
+
+    cout << BudgetTag << " z wybranego okresu" << endl;
+    for (int i=0; i<BudgetDataSize; i++) {
+        budget=budgets[i];
+        int x=budget.getDateAsNumber();
+        if ((x>=Time1)&&(x<=Time2)) {
+            cout<< "Item: " << budget.getItem() << endl;
+            singleData=budget.getAmount();
+            cout<< "Amount: " << singleData <<endl;
+            cout<< endl;
+            sum+=singleData;
+        }
+    }
+    return sum;
+}
+

@@ -1,5 +1,7 @@
 #include <iostream>
 #include "PersonalBudget.h"
+#include "TimeManager.h"
+
 
 using namespace std;
 
@@ -45,7 +47,7 @@ void PersonalBudget::AddIncome() {
     budget.clear();
 }
 
-void PersonalBudget::AddExpense(){
+void PersonalBudget::AddExpense() {
     system ("cls");
     int ID=user.getLoggedUserID();
     string BudgetTags[4]= {"Expenses", "Expense", "ExpenseID", "wydatek"};
@@ -54,3 +56,36 @@ void PersonalBudget::AddExpense(){
     NumberOfExpenses++;
     budget.clear();
 }
+
+void PersonalBudget::AnyPeriodBudgetBalance() {
+    system ("cls");
+    string TempString="", Date1, Date2;
+    TimeManager timeData;
+
+    cout<<"Zestawienie budzetowe z dowolnego okresu"<<endl;
+    cout<<"Podaj daty graniczne" << endl;
+    cout<<"Podaj zakres dat"<<endl;
+    cout<<"Data poczatkowa w formacie rrrr-mm-dd: "<<endl;
+
+    do {
+        cin>>Date1;
+    } while (timeData.IsTheDateCorrect(Date1)==false);
+
+    cout<<"Data koncowa w formacie rrrr-mm-dd: " <<endl;
+
+    int Time1=timeData.ConvertDateToInt(Date1);
+
+    do {
+        cin>>Date2;
+    } while (timeData.IsTheDateCorrect(Date2)==false);
+
+    int Time2=timeData.ConvertDateToInt(Date2);
+
+    int ID=user.getLoggedUserID();
+    BudgetManager budget(ID);
+    vector <BudgetData> budget1=income->getIncomesVector();
+    vector <BudgetData> budget2=expense->getExpencesVector();
+    budget.BudgetBalance(Time1, Time2, budget1, budget2);
+
+}
+

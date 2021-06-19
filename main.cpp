@@ -44,7 +44,7 @@ int main() {
                 case '2': budget.AddExpense(); break;
                 // case '3':                    break;
             //    case '4': break;
-              //  case '5': break;
+             case '5': budget.AnyPeriodBudgetBalance(); break;
                case '6':   budget.ChangeUserPassword(); break;
                case '9':
                     budget.LogoutUser();
