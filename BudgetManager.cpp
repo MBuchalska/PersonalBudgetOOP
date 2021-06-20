@@ -83,7 +83,7 @@ void BudgetManager::PrintBudgetData(vector <BudgetData>& budgets, string BudgetT
         cout << "data: " << budget.getDate() << endl;
         cout << "Data int: " << budget.getDateAsNumber() << endl;       //temporary
         cout << "Item: " << budget.getItem() << endl;
-        cout << "Amount: " << budget.getAmount() << endl;
+        cout << "Amount: " << fixed<< setprecision(2)<< budget.getAmount() << endl;
         cout << endl;
     }
 }
@@ -122,7 +122,7 @@ float BudgetManager::BudgetSum(vector <BudgetData>& budgets, string BudgetTag, i
         if ((x>=Time1)&&(x<=Time2)) {
             cout<< "Item: " << budget.getItem() << endl;
             singleData=budget.getAmount();
-            cout<< "Amount: " << singleData <<endl;
+            cout<< "Amount: " << fixed<< setprecision(2)<< singleData <<endl;
             cout<< endl;
             sum+=singleData;
         }

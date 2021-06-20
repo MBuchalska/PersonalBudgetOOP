@@ -162,3 +162,19 @@ int TimeManager::ConvertDateToInt(string Date) {
 
     return x;
 }
+
+string TimeManager::LastDayOfTheMonth(string Date){
+string CorrectDate;
+string TempString="";
+int month, day;
+
+TempString=Date.substr(5,2);
+month=atoi(TempString.c_str());
+
+day=DaysInMonths[month-1];
+TempString=to_string(day);
+
+CorrectDate=Date.replace(8,2,TempString);
+
+return CorrectDate;
+}

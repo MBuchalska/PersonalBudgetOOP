@@ -59,7 +59,8 @@ void PersonalBudget::AddExpense() {
 
 void PersonalBudget::AnyPeriodBudgetBalance() {
     system ("cls");
-    string TempString="", Date1, Date2;
+    string Date1, Date2;
+    int Time1, Time2;
     TimeManager timeData;
 
     cout<<"Zestawienie budzetowe z dowolnego okresu"<<endl;
@@ -73,19 +74,41 @@ void PersonalBudget::AnyPeriodBudgetBalance() {
 
     cout<<"Data koncowa w formacie rrrr-mm-dd: " <<endl;
 
-    int Time1=timeData.ConvertDateToInt(Date1);
+    Time1=timeData.ConvertDateToInt(Date1);
 
     do {
         cin>>Date2;
     } while (timeData.IsTheDateCorrect(Date2)==false);
 
-    int Time2=timeData.ConvertDateToInt(Date2);
+    Time2=timeData.ConvertDateToInt(Date2);
 
     int ID=user.getLoggedUserID();
     BudgetManager budget(ID);
     vector <BudgetData> budget1=income->getIncomesVector();
     vector <BudgetData> budget2=expense->getExpencesVector();
     budget.BudgetBalance(Time1, Time2, budget1, budget2);
-
+    budget1.clear();
+    budget2.clear();
 }
 
+void PersonalBudget::LastMonthBudgetBalance(){
+    system ("cls");
+    string Date1, Date2;
+    int Time1, Time2;
+    TimeManager timeData;
+
+    cout<<"Zestawienie budzetowe z poprzedniego miesiaca"<<endl;
+    Date1=timeData.getPreviousMonth();
+    Time1=timeData.ConvertDateToInt(Date1);
+
+    Date2=timeData.LastDayOfTheMonth(Date1);
+    Time2=timeData.ConvertDateToInt(Date2);
+
+    int ID=user.getLoggedUserID();
+    BudgetManager budget(ID);
+    vector <BudgetData> budget1=income->getIncomesVector();
+    vector <BudgetData> budget2=expense->getExpencesVector();
+    budget.BudgetBalance(Time1, Time2, budget1, budget2);
+    budget1.clear();
+    budget2.clear();
+}

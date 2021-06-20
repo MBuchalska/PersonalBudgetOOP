@@ -43,7 +43,7 @@ int main() {
                 case '1': budget.AddIncome(); break;
                 case '2': budget.AddExpense(); break;
                 // case '3':                    break;
-            //    case '4': break;
+              case '4': budget.LastMonthBudgetBalance(); break;
              case '5': budget.AnyPeriodBudgetBalance(); break;
                case '6':   budget.ChangeUserPassword(); break;
                case '9':
