@@ -178,3 +178,12 @@ CorrectDate=Date.replace(8,2,TempString);
 
 return CorrectDate;
 }
+
+string TimeManager::FirstDayOfTheMonth(string Date){
+string CorrectDate;
+string TempString="01";
+
+CorrectDate=Date.replace(8,2,TempString);
+
+return CorrectDate;
+}

@@ -112,3 +112,28 @@ void PersonalBudget::LastMonthBudgetBalance(){
     budget1.clear();
     budget2.clear();
 }
+
+void PersonalBudget::ThisMonthBudgetBalance(){
+    system ("cls");
+    string Date1, Date2, TempString;
+    int Time1, Time2;
+    TimeManager timeData;
+
+    cout<<"Zestawienie budzetowe z biezacego miesiaca"<<endl;
+    TempString=timeData.getToday();
+    Date1=timeData.FirstDayOfTheMonth(TempString);
+    cout<<Date1<<endl;
+    Time1=timeData.ConvertDateToInt(Date1);
+
+    Date2=timeData.LastDayOfTheMonth(TempString);
+    cout<<Date2<<endl;
+    Time2=timeData.ConvertDateToInt(Date2);
+
+    int ID=user.getLoggedUserID();
+    BudgetManager budget(ID);
+    vector <BudgetData> budget1=income->getIncomesVector();
+    vector <BudgetData> budget2=expense->getExpencesVector();
+    budget.BudgetBalance(Time1, Time2, budget1, budget2);
+    budget1.clear();
+    budget2.clear();
+}

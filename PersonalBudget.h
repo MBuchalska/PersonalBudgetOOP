@@ -39,6 +39,7 @@ public:
     void AddExpense();               //adds expense to the file and vector
     void AnyPeriodBudgetBalance();      // prints out budget balance from chosen period
     void LastMonthBudgetBalance();      //shows the budget balance form last month
+    void ThisMonthBudgetBalance();      // shows the budget balance from this month
 };
 
 #endif // PERSONALBUDGET_h

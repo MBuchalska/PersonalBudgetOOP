@@ -21,6 +21,7 @@ public:
     bool IsTheDateCorrect(string Date);         // checks if the date is correct at many levels
     int ConvertDateToInt(string Date);          // converts date to number
     string LastDayOfTheMonth(string Date);     // returns last day of given month
+    string FirstDayOfTheMonth(string Date);     //returns first day of the month
 };
 
 
