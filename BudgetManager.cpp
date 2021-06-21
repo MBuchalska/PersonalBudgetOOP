@@ -2,6 +2,7 @@
 #include <string>
 #include <limits>
 #include <iomanip>
+#include <algorithm>
 #include "BudgetManager.h"
 #include "TimeManager.h"
 
@@ -110,16 +111,21 @@ void BudgetManager::BudgetBalance(int Time1, int Time2, vector <BudgetData>& inc
     cout<<"Bilans: " << fixed<< setprecision(2)<<Balance<< endl;
 }
 
+
 float BudgetManager::BudgetSum(vector <BudgetData>& budgets, string BudgetTag, int Time1, int Time2) {
     BudgetData budget;
     int BudgetDataSize=budgets.size();
     float sum=0, singleData=0;
+
+    sort(budgets.begin(), budgets.end());
 
     cout << BudgetTag << " z wybranego okresu" << endl;
     for (int i=0; i<BudgetDataSize; i++) {
         budget=budgets[i];
         int x=budget.getDateAsNumber();
         if ((x>=Time1)&&(x<=Time2)) {
+            cout << "ID: " << budget.getBudgetID() <<endl;  //temp just to check if sorting works
+            cout << "Date: " << budget.getDate() <<endl;
             cout<< "Item: " << budget.getItem() << endl;
             singleData=budget.getAmount();
             cout<< "Amount: " << fixed<< setprecision(2)<< singleData <<endl;
@@ -129,4 +135,5 @@ float BudgetManager::BudgetSum(vector <BudgetData>& budgets, string BudgetTag, i
     }
     return sum;
 }
+
 

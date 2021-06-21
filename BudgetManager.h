@@ -36,7 +36,7 @@ public:
     vector <BudgetData> getExpencesVector();
     void AddNewBudgetData(int LOGGED_USER_ID, string BudgetFileName, int NumberOfBudgetData, string BudgetTags[], vector <BudgetData>& budget);
     void BudgetBalance(int Time1, int Time2, vector <BudgetData>& incomes, vector <BudgetData>& expences);
-
+ // friend bool BudgetData::SortByDate(const BudgetData &b1, const BudgetData &b2);
 
 };
 

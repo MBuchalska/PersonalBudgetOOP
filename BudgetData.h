@@ -22,6 +22,8 @@ public:
         amount=cash;
     };
 
+    friend bool operator < (const BudgetData &b1, const BudgetData &b2);
+
     void setBudgetID(int newBID);
     void setUserID(int newUID);
     void setDate(string newDate);

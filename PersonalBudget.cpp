@@ -122,11 +122,9 @@ void PersonalBudget::ThisMonthBudgetBalance(){
     cout<<"Zestawienie budzetowe z biezacego miesiaca"<<endl;
     TempString=timeData.getToday();
     Date1=timeData.FirstDayOfTheMonth(TempString);
-    cout<<Date1<<endl;
     Time1=timeData.ConvertDateToInt(Date1);
 
     Date2=timeData.LastDayOfTheMonth(TempString);
-    cout<<Date2<<endl;
     Time2=timeData.ConvertDateToInt(Date2);
 
     int ID=user.getLoggedUserID();
