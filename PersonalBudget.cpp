@@ -41,20 +41,18 @@ void PersonalBudget::AddIncome() {
     system ("cls");
     int ID=user.getLoggedUserID();
     string BudgetTags[4]= {"Incomes", "Income", "IncomeID", "przychod"};
-    vector <BudgetData> budget=income->getIncomesVector();
-    income->AddNewBudgetData(ID, INCOME_FILE_NAME, NumberOfIncomes, BudgetTags, budget);
+    BudgetData Inc=income->AddNewBudgetData(ID, INCOME_FILE_NAME, NumberOfIncomes, BudgetTags);
+    income->setIncomesVector(Inc);
     NumberOfIncomes++;
-    budget.clear();
 }
 
 void PersonalBudget::AddExpense() {
     system ("cls");
     int ID=user.getLoggedUserID();
     string BudgetTags[4]= {"Expenses", "Expense", "ExpenseID", "wydatek"};
-    vector <BudgetData> budget=expense->getExpencesVector();
-    expense->AddNewBudgetData(ID, EXPENCE_FILE_NAME, NumberOfExpenses, BudgetTags, budget);
+    BudgetData Exp=expense->AddNewBudgetData(ID, EXPENCE_FILE_NAME, NumberOfExpenses, BudgetTags);
+    expense->setExpencesVector(Exp);
     NumberOfExpenses++;
-    budget.clear();
 }
 
 void PersonalBudget::AnyPeriodBudgetBalance() {
@@ -91,7 +89,7 @@ void PersonalBudget::AnyPeriodBudgetBalance() {
     budget2.clear();
 }
 
-void PersonalBudget::LastMonthBudgetBalance(){
+void PersonalBudget::LastMonthBudgetBalance() {
     system ("cls");
     string Date1, Date2;
     int Time1, Time2;
@@ -113,7 +111,7 @@ void PersonalBudget::LastMonthBudgetBalance(){
     budget2.clear();
 }
 
-void PersonalBudget::ThisMonthBudgetBalance(){
+void PersonalBudget::ThisMonthBudgetBalance() {
     system ("cls");
     string Date1, Date2, TempString;
     int Time1, Time2;

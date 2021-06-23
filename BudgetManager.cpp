@@ -17,7 +17,7 @@ vector <BudgetData> BudgetManager::getExpencesVector() {
     return expences;
 }
 
-void BudgetManager::AddNewBudgetData(int LOGGED_USER_ID, string BudgetFileName, int NumberOfBudgetData, string BudgetTags[], vector <BudgetData>& budget) {
+BudgetData BudgetManager::AddNewBudgetData(int LOGGED_USER_ID, string BudgetFileName, int NumberOfBudgetData, string BudgetTags[]) {
     BudgetData SingleBudget;
     string GivenDate, TempString="";
     int DateNumber;
@@ -66,16 +66,18 @@ void BudgetManager::AddNewBudgetData(int LOGGED_USER_ID, string BudgetFileName, 
     float amount=stof(TempString);
     SingleBudget.setAmount(amount);
 
-    budget.push_back(SingleBudget);
     file.AddBudgetDataToFile(SingleBudget, BudgetFileName, BudgetTags);
 
     cout << BudgetTags[3] << " dodany" << endl;
     system("pause");
+
+    return SingleBudget;
 }
 
 void BudgetManager::PrintBudgetData(vector <BudgetData>& budgets, string BudgetTag) {
     BudgetData budget;
     int sizeOfBudgets = budgets.size();
+    cout << sizeOfBudgets << endl;
 
     for (int i=0; i<sizeOfBudgets; i++) {
         budget=budgets[i];
@@ -136,4 +138,9 @@ float BudgetManager::BudgetSum(vector <BudgetData>& budgets, string BudgetTag, i
     return sum;
 }
 
-
+void BudgetManager::setIncomesVector(BudgetData thing) {
+    incomes.push_back(thing);
+}
+void BudgetManager::setExpencesVector(BudgetData thing) {
+    expences.push_back(thing);
+}

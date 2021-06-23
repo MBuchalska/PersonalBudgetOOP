@@ -22,7 +22,7 @@ public:
         amount=cash;
     };
 
-    friend bool operator < (const BudgetData &b1, const BudgetData &b2);
+    friend bool operator < (const BudgetData &b1, const BudgetData &b2); //defines the operator for "<"
 
     void setBudgetID(int newBID);
     void setUserID(int newUID);

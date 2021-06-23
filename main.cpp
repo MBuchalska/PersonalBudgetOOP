@@ -40,20 +40,31 @@ int main() {
 
                 system("cls");
                 switch (znak) {
-                case '1': budget.AddIncome(); break;
-                case '2': budget.AddExpense(); break;
-                case '3': budget.ThisMonthBudgetBalance(); break;
-              case '4': budget.LastMonthBudgetBalance(); break;
-             case '5': budget.AnyPeriodBudgetBalance(); break;
-               case '6':   budget.ChangeUserPassword(); break;
-               case '9':
+                case '1':
+                    budget.AddIncome();
+                    break;
+                case '2':
+                    budget.AddExpense();
+                    break;
+                case '3':
+                    budget.ThisMonthBudgetBalance();
+                    break;
+                case '4':
+                    budget.LastMonthBudgetBalance();
+                    break;
+                case '5':
+                    budget.AnyPeriodBudgetBalance();
+                    break;
+                case '6':
+                    budget.ChangeUserPassword();
+                    break;
+                case '9':
                     budget.LogoutUser();
                     break;
                 }
             }
         }
         break;
-
 
         case '9': {
             cout<<"Koniec pracy. Dziekujemy za skorzystanie z programu"<<endl;

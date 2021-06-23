@@ -22,21 +22,23 @@ public:
         :file(IncomeFileName), LOGGED_USER_ID(LoggedUserID) {
         IncomeIDTag="IncomeID";
         incomes=file.DownloadBudgetDataFromFile(LOGGED_USER_ID, IncomeFileName, IncomeIDTag); // downloads income data from the file
-        // PrintBudgetData(incomes, IncomeIDTag);
+       // PrintBudgetData(incomes, IncomeIDTag);      //Temp
     };
 
     BudgetManager(int LoggedUserID, string ExpenceFileName)
         :LOGGED_USER_ID(LoggedUserID), file(ExpenceFileName)  {
         ExpenceIDTag="ExpenseID";
         expences=file.DownloadBudgetDataFromFile(LOGGED_USER_ID, ExpenceFileName, ExpenceIDTag); // downloads expense data from the file
-        // PrintBudgetData(expences, ExpenceIDTag);
+      //  PrintBudgetData(expences, ExpenceIDTag);  // temp
     };
 
     vector <BudgetData> getIncomesVector();
     vector <BudgetData> getExpencesVector();
-    void AddNewBudgetData(int LOGGED_USER_ID, string BudgetFileName, int NumberOfBudgetData, string BudgetTags[], vector <BudgetData>& budget);
-    void BudgetBalance(int Time1, int Time2, vector <BudgetData>& incomes, vector <BudgetData>& expences);
- // friend bool BudgetData::SortByDate(const BudgetData &b1, const BudgetData &b2);
+    void setIncomesVector(BudgetData thing);
+    void setExpencesVector(BudgetData thing);
+
+    BudgetData AddNewBudgetData(int LOGGED_USER_ID, string BudgetFileName, int NumberOfBudgetData, string BudgetTags[]); //adds new budget data
+    void BudgetBalance(int Time1, int Time2, vector <BudgetData>& incomes, vector <BudgetData>& expences);      // calculates budget balance from any period
 
 };
 

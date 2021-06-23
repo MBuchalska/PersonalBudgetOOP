@@ -6,9 +6,7 @@ using namespace std;
 
 TimeManager::TimeManager() {
     Today=WhatDayIsToday();
-    //  cout<<Today<<endl;
     PreviousMonth=BeginingOfLastMonth();
-    //  cout<<PreviousMonth<<endl;
 }
 
 string TimeManager::WhatDayIsToday() {
