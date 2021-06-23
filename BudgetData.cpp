@@ -3,50 +3,57 @@
 
 using namespace std;
 
-    void BudgetData::setBudgetID(int newBID){
+void BudgetData::setBudgetID(int newBID) {
     BudgetID=newBID;
-    }
+}
 
-    void BudgetData::setUserID(int newUID){
+void BudgetData::setUserID(int newUID) {
     UserID=newUID;
-    }
+}
 
-    void BudgetData::setDate(string newDate){
+void BudgetData::setDate(string newDate) {
     date=newDate;
-    }
+}
 
-    void BudgetData::setDateAsNumber(int newDN){
+void BudgetData::setDateAsNumber(int newDN) {
     dateAsNumber=newDN;
-    }
+}
 
-    void BudgetData::setItem(string itemName){
+void BudgetData::setItem(string itemName) {
     item=itemName;
-    }
+}
 
-    void BudgetData::setAmount(float money){
+void BudgetData::setAmount(float money) {
     amount=money;
-    }
+}
 
-    int BudgetData::getBudgetID(){
+int BudgetData::getBudgetID() {
     return BudgetID;
-    }
+}
 
-    int BudgetData::getUserID(){
+int BudgetData::getUserID() {
     return UserID;
-    }
+}
 
-    string BudgetData::getDate(){
+string BudgetData::getDate() {
     return date;
-    }
+}
 
-    int BudgetData::getDateAsNumber(){
+int BudgetData::getDateAsNumber() {
     return dateAsNumber;
-    }
+}
 
-    string BudgetData::getItem(){
+string BudgetData::getItem() {
     return item;
-    }
+}
 
-    float BudgetData::getAmount(){
+float BudgetData::getAmount() {
     return amount;
-    }
+}
+
+bool operator < (const BudgetData &b1, const BudgetData &b2) {
+    if (b1.dateAsNumber<=b2.dateAsNumber) return true;
+    else return false;
+}
+
+

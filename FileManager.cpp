@@ -172,32 +172,32 @@ vector <BudgetData> FileManager::DownloadBudgetDataFromFile(int UserID, string B
             TempString=xml.GetData();
             int y=atoi(TempString.c_str());
 
-            if(y==UserID){
-            budget.setUserID(y);
+            if(y==UserID) {
+                budget.setUserID(y);
 
-            xml.FindElem("UserID");
-            TempString=xml.GetData();
-            TempInt=atoi(TempString.c_str());
-            budget.setUserID(TempInt);
+                xml.FindElem("UserID");
+                TempString=xml.GetData();
+                TempInt=atoi(TempString.c_str());
+                budget.setUserID(TempInt);
 
-            xml.FindElem("date");
-            TempString=xml.GetData();
-            budget.setDate(TempString);
+                xml.FindElem("date");
+                TempString=xml.GetData();
+                budget.setDate(TempString);
 
-            TimeManager time;
-            TempInt=time.ConvertDateToInt(TempString);
-            budget.setDateAsNumber(TempInt);
+                TimeManager time;
+                TempInt=time.ConvertDateToInt(TempString);
+                budget.setDateAsNumber(TempInt);
 
-            xml.FindElem("item");
-            TempString=xml.GetData();
-            budget.setItem(TempString);
+                xml.FindElem("item");
+                TempString=xml.GetData();
+                budget.setItem(TempString);
 
-            xml.FindElem("amount");
-            TempString=xml.GetData();
-            float x=stof(TempString);
-            budget.setAmount(x);
+                xml.FindElem("amount");
+                TempString=xml.GetData();
+                float x=stof(TempString);
+                budget.setAmount(x);
 
-            budgets.push_back(budget);
+                budgets.push_back(budget);
             }
 
             xml.OutOfElem();

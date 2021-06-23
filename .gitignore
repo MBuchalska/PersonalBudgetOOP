@@ -40,3 +40,5 @@
 mainOld.cpp
 *.uxf
 *.mm
+BudgetManager.h.save-failed
+BudgetData.h.save-failed

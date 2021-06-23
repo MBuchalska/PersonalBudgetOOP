@@ -19,15 +19,13 @@ class PersonalBudget {
     FileManager file;
 
 public:
-    PersonalBudget(string UserFileName, string IncomeFileName, string ExpenceFileName) //constructor
+    PersonalBudget(string UserFileName, string IncomeFileName, string ExpenceFileName)              //constructor
         :user(UserFileName), INCOME_FILE_NAME(IncomeFileName),EXPENCE_FILE_NAME(ExpenceFileName) {
         user.setLoggedUserID(0);
         income=NULL;
         expense=NULL;
         NumberOfIncomes=file.HowManyBudgetData(INCOME_FILE_NAME);
-       // cout << NumberOfIncomes << endl;
         NumberOfExpenses=file.HowManyBudgetData(EXPENCE_FILE_NAME);
-       // cout << NumberOfExpences << endl;
     }
 
     void RegisterUser();            // registers new user
@@ -37,6 +35,9 @@ public:
     void ChangeUserPassword();       // changes a password of logged user
     void AddIncome();               //adds income to the file and vector
     void AddExpense();               //adds expense to the file and vector
+    void AnyPeriodBudgetBalance();      // prints out budget balance from chosen period
+    void LastMonthBudgetBalance();      //shows the budget balance form last month
+    void ThisMonthBudgetBalance();      // shows the budget balance from this month
 };
 
 #endif // PERSONALBUDGET_h

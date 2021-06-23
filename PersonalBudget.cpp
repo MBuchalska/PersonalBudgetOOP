@@ -1,5 +1,7 @@
 #include <iostream>
 #include "PersonalBudget.h"
+#include "TimeManager.h"
+
 
 using namespace std;
 
@@ -39,18 +41,95 @@ void PersonalBudget::AddIncome() {
     system ("cls");
     int ID=user.getLoggedUserID();
     string BudgetTags[4]= {"Incomes", "Income", "IncomeID", "przychod"};
-    vector <BudgetData> budget=income->getIncomesVector();
-    income->AddNewBudgetData(ID, INCOME_FILE_NAME, NumberOfIncomes, BudgetTags, budget);
+    BudgetData Inc=income->AddNewBudgetData(ID, INCOME_FILE_NAME, NumberOfIncomes, BudgetTags);
+    income->setIncomesVector(Inc);
     NumberOfIncomes++;
-    budget.clear();
 }
 
-void PersonalBudget::AddExpense(){
+void PersonalBudget::AddExpense() {
     system ("cls");
     int ID=user.getLoggedUserID();
     string BudgetTags[4]= {"Expenses", "Expense", "ExpenseID", "wydatek"};
-    vector <BudgetData> budget=expense->getExpencesVector();
-    expense->AddNewBudgetData(ID, EXPENCE_FILE_NAME, NumberOfExpenses, BudgetTags, budget);
+    BudgetData Exp=expense->AddNewBudgetData(ID, EXPENCE_FILE_NAME, NumberOfExpenses, BudgetTags);
+    expense->setExpencesVector(Exp);
     NumberOfExpenses++;
-    budget.clear();
+}
+
+void PersonalBudget::AnyPeriodBudgetBalance() {
+    system ("cls");
+    string Date1, Date2;
+    int Time1, Time2;
+    TimeManager timeData;
+
+    cout<<"Zestawienie budzetowe z dowolnego okresu"<<endl;
+    cout<<"Podaj daty graniczne" << endl;
+    cout<<"Podaj zakres dat"<<endl;
+    cout<<"Data poczatkowa w formacie rrrr-mm-dd: "<<endl;
+
+    do {
+        cin>>Date1;
+    } while (timeData.IsTheDateCorrect(Date1)==false);
+
+    cout<<"Data koncowa w formacie rrrr-mm-dd: " <<endl;
+
+    Time1=timeData.ConvertDateToInt(Date1);
+
+    do {
+        cin>>Date2;
+    } while (timeData.IsTheDateCorrect(Date2)==false);
+
+    Time2=timeData.ConvertDateToInt(Date2);
+
+    int ID=user.getLoggedUserID();
+    BudgetManager budget(ID);
+    vector <BudgetData> budget1=income->getIncomesVector();
+    vector <BudgetData> budget2=expense->getExpencesVector();
+    budget.BudgetBalance(Time1, Time2, budget1, budget2);
+    budget1.clear();
+    budget2.clear();
+}
+
+void PersonalBudget::LastMonthBudgetBalance() {
+    system ("cls");
+    string Date1, Date2;
+    int Time1, Time2;
+    TimeManager timeData;
+
+    cout<<"Zestawienie budzetowe z poprzedniego miesiaca"<<endl;
+    Date1=timeData.getPreviousMonth();
+    Time1=timeData.ConvertDateToInt(Date1);
+
+    Date2=timeData.LastDayOfTheMonth(Date1);
+    Time2=timeData.ConvertDateToInt(Date2);
+
+    int ID=user.getLoggedUserID();
+    BudgetManager budget(ID);
+    vector <BudgetData> budget1=income->getIncomesVector();
+    vector <BudgetData> budget2=expense->getExpencesVector();
+    budget.BudgetBalance(Time1, Time2, budget1, budget2);
+    budget1.clear();
+    budget2.clear();
+}
+
+void PersonalBudget::ThisMonthBudgetBalance() {
+    system ("cls");
+    string Date1, Date2, TempString;
+    int Time1, Time2;
+    TimeManager timeData;
+
+    cout<<"Zestawienie budzetowe z biezacego miesiaca"<<endl;
+    TempString=timeData.getToday();
+    Date1=timeData.FirstDayOfTheMonth(TempString);
+    Time1=timeData.ConvertDateToInt(Date1);
+
+    Date2=timeData.LastDayOfTheMonth(TempString);
+    Time2=timeData.ConvertDateToInt(Date2);
+
+    int ID=user.getLoggedUserID();
+    BudgetManager budget(ID);
+    vector <BudgetData> budget1=income->getIncomesVector();
+    vector <BudgetData> budget2=expense->getExpencesVector();
+    budget.BudgetBalance(Time1, Time2, budget1, budget2);
+    budget1.clear();
+    budget2.clear();
 }

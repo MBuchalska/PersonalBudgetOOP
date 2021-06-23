@@ -6,9 +6,7 @@ using namespace std;
 
 TimeManager::TimeManager() {
     Today=WhatDayIsToday();
-    //  cout<<Today<<endl;
     PreviousMonth=BeginingOfLastMonth();
-    //  cout<<PreviousMonth<<endl;
 }
 
 string TimeManager::WhatDayIsToday() {
@@ -161,4 +159,29 @@ int TimeManager::ConvertDateToInt(string Date) {
     int x=atoi(Date.c_str());
 
     return x;
+}
+
+string TimeManager::LastDayOfTheMonth(string Date){
+string CorrectDate;
+string TempString="";
+int month, day;
+
+TempString=Date.substr(5,2);
+month=atoi(TempString.c_str());
+
+day=DaysInMonths[month-1];
+TempString=to_string(day);
+
+CorrectDate=Date.replace(8,2,TempString);
+
+return CorrectDate;
+}
+
+string TimeManager::FirstDayOfTheMonth(string Date){
+string CorrectDate;
+string TempString="01";
+
+CorrectDate=Date.replace(8,2,TempString);
+
+return CorrectDate;
 }

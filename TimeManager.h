@@ -12,7 +12,7 @@ class TimeManager {
     int DaysInMonths[13]={31,28,31,30,31,30,31,31,30,31,30,31,29};
 
     string WhatDayIsToday();
-    string BeginingOfLastMonth();
+    string BeginingOfLastMonth();               //returns first days of the last month
 
 public:
     TimeManager();
@@ -20,6 +20,8 @@ public:
     string getPreviousMonth();                  // getter for PreviousMonth date
     bool IsTheDateCorrect(string Date);         // checks if the date is correct at many levels
     int ConvertDateToInt(string Date);          // converts date to number
+    string LastDayOfTheMonth(string Date);     // returns last day of given month
+    string FirstDayOfTheMonth(string Date);     //returns first day of the month
 };
 
 
