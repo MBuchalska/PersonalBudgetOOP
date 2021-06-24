@@ -153,55 +153,53 @@ vector <BudgetData> FileManager::DownloadBudgetDataFromFile(int UserID, string B
     string TempString;
     int TempInt;
 
-    bool fileExists = xml.Load(BudgetFileName);
-    if (!fileExists) cout<<"Plik z bud¿etem nie istnieje. Dodaj jakieœ pozycje bud¿etowe"<<endl;
 
-    else {
-        xml.FindElem();
+    xml.Load(BudgetFileName);
+
+    xml.FindElem();
+    xml.IntoElem();
+
+    while(xml.FindElem()==true) {
         xml.IntoElem();
 
-        while(xml.FindElem()==true) {
-            xml.IntoElem();
+        xml.FindElem(BudgetTag);
+        TempString=xml.GetData();
+        TempInt=atoi(TempString.c_str());
+        budget.setBudgetID(TempInt);
 
-            xml.FindElem(BudgetTag);
-            TempString=xml.GetData();
-            TempInt=atoi(TempString.c_str());
-            budget.setBudgetID(TempInt);
+        xml.FindElem("UserID");
+        TempString=xml.GetData();
+        int y=atoi(TempString.c_str());
+
+        if(y==UserID) {
+            budget.setUserID(y);
 
             xml.FindElem("UserID");
             TempString=xml.GetData();
-            int y=atoi(TempString.c_str());
+            TempInt=atoi(TempString.c_str());
+            budget.setUserID(TempInt);
 
-            if(y==UserID) {
-                budget.setUserID(y);
+            xml.FindElem("date");
+            TempString=xml.GetData();
+            budget.setDate(TempString);
 
-                xml.FindElem("UserID");
-                TempString=xml.GetData();
-                TempInt=atoi(TempString.c_str());
-                budget.setUserID(TempInt);
+            TimeManager time;
+            TempInt=time.ConvertDateToInt(TempString);
+            budget.setDateAsNumber(TempInt);
 
-                xml.FindElem("date");
-                TempString=xml.GetData();
-                budget.setDate(TempString);
+            xml.FindElem("item");
+            TempString=xml.GetData();
+            budget.setItem(TempString);
 
-                TimeManager time;
-                TempInt=time.ConvertDateToInt(TempString);
-                budget.setDateAsNumber(TempInt);
+            xml.FindElem("amount");
+            TempString=xml.GetData();
+            float x=stof(TempString);
+            budget.setAmount(x);
 
-                xml.FindElem("item");
-                TempString=xml.GetData();
-                budget.setItem(TempString);
-
-                xml.FindElem("amount");
-                TempString=xml.GetData();
-                float x=stof(TempString);
-                budget.setAmount(x);
-
-                budgets.push_back(budget);
-            }
-
-            xml.OutOfElem();
+            budgets.push_back(budget);
         }
+
+        xml.OutOfElem();
     }
 
     return budgets;
